@@ -11,28 +11,21 @@ import Slider from "@material-ui/core/Slider";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
+import Alert from "@material-ui/lab/Alert";
 
 import "../App.css";
-// import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 240,
     margin: 30,
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
+  alert: {
+    marginTop: 5,
   },
 });
 
+// Dashboard
 export default function MusicDashboard() {
   const classes = useStyles();
 
@@ -141,6 +134,37 @@ export default function MusicDashboard() {
             </FormControl>
           </CardActions>
         </Card>
+      </div>
+      <div>
+        <h4>System Notifications:</h4>
+        <div>
+          <Typography variant="h4">
+            {!online ? (
+              <Alert className={classes.alert} severity="warning">
+                Your application is offline. You won't be able to share or
+                stream music to other
+              </Alert>
+            ) : (
+              <div></div>
+            )}
+            {volume > 80 ? (
+              <Alert className={classes.alert} severity="info">
+                Listening to music at a high volume could cause long-term
+                hearing loss.
+              </Alert>
+            ) : (
+              <div></div>
+            )}
+            {quality === "Low" ? (
+              <Alert className={classes.alert} severity="warning">
+                Music quality is degraded. Increase quality if your connection
+                allows it.
+              </Alert>
+            ) : (
+              <div></div>
+            )}
+          </Typography>
+        </div>
       </div>
     </div>
   );

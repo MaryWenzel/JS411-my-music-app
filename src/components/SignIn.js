@@ -5,10 +5,17 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginTop: 50,
     "& > *": {
       margin: theme.spacing(1),
       width: "25ch",
     },
+  },
+  button: {
+    width: 250,
   },
 }));
 
@@ -22,7 +29,12 @@ export default function SignIn(props) {
       <br></br>
       <TextField id="standard-basic" label="Password" />
       <br></br>
-      <Button onClick={handleLogin} variant="contained" color="primary">
+      <Button
+        className={classes.button}
+        onClick={handleLogin}
+        variant="contained"
+        color="primary"
+      >
         Sign In
       </Button>
     </form>
