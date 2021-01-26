@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import MusicAppBar from "./components/MusicAppBar";
+import SignIn from "./components/SignIn";
+import MusicDashboard from "./components/MusicDashboard";
+// import { Dashboard } from "@material-ui/icons";
 
-function App() {
+import "./App.css";
+
+export default function App() {
+  const [loggedIn, setLogin] = useState(false);
+
+  const handleLogin = () => {
+    loggedIn ? setLogin(false) : setLogin(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MusicAppBar loggedIn={loggedIn} handleLogin={handleLogin}></MusicAppBar>
+      <div className="App-login">
+        {loggedIn ? (
+          <MusicDashboard></MusicDashboard>
+        ) : (
+          <SignIn handleLogin={handleLogin}></SignIn>
+        )}
+      </div>
     </div>
   );
 }
-
-export default App;
